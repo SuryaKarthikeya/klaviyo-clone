@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme {
+  --color-klaviyo-bg: #fcf9f4;
+  --color-klaviyo-dark: #1e1e1e;
+  --color-klaviyo-blue: #2352f8;
+  --color-klaviyo-green: #e9f5d9;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #f3f4f6;
+}

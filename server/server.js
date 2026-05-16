@@ -7,7 +7,7 @@ const homepageRoutes = require('./routes/homepage');
 connectDB();
 
 const app = express();
-app.use(cors({ origin: 'http://localhost:3000' }));   // React frontend port
+app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'] }));   // React frontend and admin ports
 app.use(express.json());
 
 app.use('/api', homepageRoutes);
