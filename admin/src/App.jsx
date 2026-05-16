@@ -5,7 +5,11 @@ import HeroForm from './components/HeroForm';
 import StatsForm from './components/StatsForm';
 import LogoStripForm from './components/LogoStripForm';
 import TestimonialsForm from './components/TestimonialsForm';
-// We'll create these components next.
+import NavbarForm from './components/NavbarForm';
+import FeaturesForm from './components/FeaturesForm';
+import IntegrationsForm from './components/IntegrationsForm';
+import PricingForm from './components/PricingForm';
+import FooterForm from './components/FooterForm';
 
 function App() {
   const [activeTab, setActiveTab] = useState('hero');
@@ -39,7 +43,7 @@ function App() {
       if (!res.ok) throw new Error('Network response was not ok');
       toast.success('Saved successfully!', { id: loadingToast });
       
-      // Update local state so it doesn't revert before next fetch
+      // Update local state
       setData(prev => ({ ...prev, [section]: payload }));
       
     } catch (error) {
@@ -48,14 +52,19 @@ function App() {
   };
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center bg-gray-100">Loading CMS...</div>;
+    return <div className="min-h-screen flex items-center justify-center bg-gray-100 font-sans">Loading CMS...</div>;
   }
 
   const tabs = [
+    { id: 'navbar', label: 'Navigation', icon: <Menu className="w-5 h-5" /> },
     { id: 'hero', label: 'Hero Section', icon: <Type className="w-5 h-5" /> },
     { id: 'stats', label: 'Stats Banner', icon: <BarChart3 className="w-5 h-5" /> },
     { id: 'logostrip', label: 'Logo Strip', icon: <ImageIcon className="w-5 h-5" /> },
+    { id: 'features', label: 'Features', icon: <ListChecks className="w-5 h-5" /> },
     { id: 'testimonials', label: 'Testimonials', icon: <MessageSquare className="w-5 h-5" /> },
+    { id: 'integrations', label: 'Integrations', icon: <PlusSquare className="w-5 h-5" /> },
+    { id: 'pricing', label: 'Pricing', icon: <CreditCard className="w-5 h-5" /> },
+    { id: 'footer', label: 'Footer', icon: <Menu className="w-5 h-5" /> },
   ];
 
   return (
@@ -112,10 +121,15 @@ function App() {
             </div>
           ) : (
             <>
+              {activeTab === 'navbar' && <NavbarForm data={data?.navbar} onSave={(payload) => handleSave('navbar', payload)} />}
               {activeTab === 'hero' && <HeroForm data={data?.hero} onSave={(payload) => handleSave('hero', payload)} />}
               {activeTab === 'stats' && <StatsForm data={data?.stats} onSave={(payload) => handleSave('stats', payload)} />}
               {activeTab === 'logostrip' && <LogoStripForm data={data?.logoStrip} onSave={(payload) => handleSave('logostrip', payload)} />}
+              {activeTab === 'features' && <FeaturesForm data={data?.features} onSave={(payload) => handleSave('features', payload)} />}
               {activeTab === 'testimonials' && <TestimonialsForm data={data?.testimonials} onSave={(payload) => handleSave('testimonials', payload)} />}
+              {activeTab === 'integrations' && <IntegrationsForm data={data?.integrations} onSave={(payload) => handleSave('integrations', payload)} />}
+              {activeTab === 'pricing' && <PricingForm data={data?.pricing} onSave={(payload) => handleSave('pricing', payload)} />}
+              {activeTab === 'footer' && <FooterForm data={data?.footer} onSave={(payload) => handleSave('footer', payload)} />}
             </>
           )}
         </main>
