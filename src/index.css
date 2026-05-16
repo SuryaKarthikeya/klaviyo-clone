@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@400;500;600;700&display=swap');
+
+@theme {
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+  --color-klaviyo-dark: #1e1e1e;
+  --color-klaviyo-bg: #fcf9f4;
+  --color-klaviyo-peach: #ffb19b;
+  --color-klaviyo-green: #ccff00;
+  --color-klaviyo-blue: #0044ff;
+  --color-klaviyo-gray-100: #f5f5f5;
+  --color-klaviyo-gray-200: #eaeaea;
+}
+
+:root {
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-klaviyo-bg);
+  color: var(--color-klaviyo-dark);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, .font-serif {
+  font-family: var(--font-serif);
+}
+
+.bg-klaviyo-bg { background-color: var(--color-klaviyo-bg); }
+.text-klaviyo-dark { color: var(--color-klaviyo-dark); }
+.bg-klaviyo-dark { background-color: var(--color-klaviyo-dark); }
+.bg-klaviyo-blue { background-color: var(--color-klaviyo-blue); }
+.text-klaviyo-blue { color: var(--color-klaviyo-blue); }
+
+
+/* Custom utilities if needed */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
