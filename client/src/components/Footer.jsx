@@ -13,7 +13,7 @@ const Footer = ({ data }) => {
   };
 
   return (
-    <footer className="bg-klaviyo-dark text-white pt-24 pb-12">
+    <footer className="bg-realify-dark text-white pt-24 pb-12">
       <div className="max-w-[1400px] mx-auto px-6">
         
         {/* Main Footer Links */}
@@ -22,9 +22,9 @@ const Footer = ({ data }) => {
           <div className="col-span-2 md:col-span-3 lg:col-span-2 pr-8">
             <h3 className="text-3xl font-bold tracking-tighter mb-4 flex items-center">
               {data.footer.logo ? (
-                <img src={data.footer.logo} alt="Klaviyo" className="h-8 filter brightness-0 invert" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+                <img src={data.footer.logo} alt="Realify.AI" className="h-8 filter brightness-0 invert" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
               ) : null}
-              <span style={{ display: data.footer.logo ? 'none' : 'block' }}>klaviyo</span>
+              <span style={{ display: data.footer.logo ? 'none' : 'block' }}>Realify.AI</span>
             </h3>
             <p className="text-gray-400 text-lg">{data.footer.tagline || 'The autonomous B2C CRM.'}</p>
           </div>

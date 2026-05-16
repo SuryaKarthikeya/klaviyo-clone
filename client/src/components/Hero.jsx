@@ -28,7 +28,7 @@ const Hero = ({ data, logoStrip }) => {
     : data.backgroundImage;
 
   return (
-    <div className="relative pt-32 pb-24 overflow-hidden bg-klaviyo-bg">
+    <div className="relative pt-32 pb-24 overflow-hidden bg-realify-bg">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
         <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -50,7 +50,7 @@ const Hero = ({ data, logoStrip }) => {
 
             <motion.h1 
               variants={itemVariants}
-              className="font-serif text-[4rem] leading-[1.05] lg:text-[5.5rem] font-medium tracking-tight text-klaviyo-dark mb-6"
+              className="font-serif text-[4rem] leading-[1.05] lg:text-[5.5rem] font-medium tracking-tight text-realify-dark mb-6"
             >
               {data.headline}
             </motion.h1>
@@ -69,9 +69,9 @@ const Hero = ({ data, logoStrip }) => {
               <input 
                 type="email" 
                 placeholder="Work email" 
-                className="flex-1 px-5 py-4 border border-gray-300 rounded bg-white text-lg focus:outline-none focus:border-klaviyo-blue transition-colors"
+                className="flex-1 px-5 py-4 border border-gray-300 rounded bg-white text-lg focus:outline-none focus:border-realify-blue transition-colors"
               />
-              <a href={data.primaryCTA?.url || "#"} className="px-8 py-4 rounded bg-klaviyo-blue text-white font-medium text-lg hover:bg-blue-700 transition-all duration-300 whitespace-nowrap text-center">
+              <a href={data.primaryCTA?.url || "#"} className="px-8 py-4 rounded bg-realify-blue text-white font-medium text-lg hover:bg-blue-700 transition-all duration-300 whitespace-nowrap text-center">
                 {data.primaryCTA?.label || "Sign up"}
               </a>
             </motion.div>
@@ -90,7 +90,7 @@ const Hero = ({ data, logoStrip }) => {
             <div className="relative rounded-2xl overflow-hidden flex items-center justify-center shadow-xl">
               <img 
                 src={heroImage} 
-                alt="Klaviyo Agentic Marketing" 
+                alt="Realify.AI Agentic Marketing" 
                 className="w-full h-auto object-cover"
                 onError={(e) => { e.target.src = "/assets/klaviyo/hero.webp"; }}
               />

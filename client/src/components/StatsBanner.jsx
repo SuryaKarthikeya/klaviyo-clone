@@ -19,7 +19,7 @@ const StatsBanner = ({ data }) => {
   if (!data || !data.stats) return null;
 
   return (
-    <div className="bg-klaviyo-green py-24 border-y border-black relative overflow-hidden" ref={ref}>
+    <div className="bg-realify-green py-24 border-y border-black relative overflow-hidden" ref={ref}>
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center divide-y md:divide-y-0 md:divide-x divide-black">
           

@@ -32,7 +32,7 @@ const Navbar = ({ data }) => {
       <div className="w-1/4">
         <h4 className="text-gray-900 font-bold mb-4 text-lg">{title} Overview</h4>
         <ul className="space-y-3">
-          {['The B2C CRM', 'Klaviyo AI (K:AI)', 'Klaviyo Marketing', 'Klaviyo Service'].map(item => (
+          {['The B2C CRM', 'Realify.AI AI (R:AI)', 'Realify.AI Marketing', 'Realify.AI Service'].map(item => (
             <li key={item}><a href="#" className="text-gray-600 hover:text-black font-medium transition-colors block">{item}</a></li>
           ))}
         </ul>
@@ -48,7 +48,7 @@ const Navbar = ({ data }) => {
       <div className="w-1/2 bg-gray-50 rounded-xl p-8 border border-gray-100 flex items-center group cursor-pointer">
         <div className="flex-1 pr-6">
           <p className="text-sm font-bold text-red-600 uppercase tracking-widest mb-2">Spotlight</p>
-          <h3 className="text-2xl font-bold text-gray-900 mb-2">The Klaviyo omniverse</h3>
+          <h3 className="text-2xl font-bold text-gray-900 mb-2">The Realify.AI omniverse</h3>
           <p className="text-gray-600 mb-4">One platform. Every channel. Real results.</p>
           <span className="inline-flex items-center text-black font-bold group-hover:underline">Explore <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" /></span>
         </div>
@@ -62,7 +62,7 @@ const Navbar = ({ data }) => {
   return (
     <nav 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled || activeMenu || isMobileOpen ? 'bg-klaviyo-bg shadow-md py-4' : 'bg-klaviyo-bg/80 backdrop-blur-md py-6'
+        isScrolled || activeMenu || isMobileOpen ? 'bg-realify-bg shadow-md py-4' : 'bg-realify-bg/80 backdrop-blur-md py-6'
       }`}
       onMouseLeave={handleMouseLeave}
     >
@@ -73,9 +73,9 @@ const Navbar = ({ data }) => {
           <div className="flex items-center gap-10">
             <a href="/" className="text-4xl font-bold tracking-tighter text-black lowercase flex items-center">
               {data.logo ? (
-                 <img src={data.logo} alt="Klaviyo Logo" className="h-8" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+                 <img src={data.logo} alt="Realify.AI Logo" className="h-8" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
               ) : null}
-              <span style={{ display: data.logo ? 'none' : 'block' }}>klaviyo</span>
+              <span style={{ display: data.logo ? 'none' : 'block' }}>realify.ai</span>
             </a>
             <div className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
@@ -113,7 +113,7 @@ const Navbar = ({ data }) => {
             <a href="/demo" className="text-sm font-bold text-black border-2 border-black px-5 py-2.5 rounded hover:bg-black hover:text-white transition-all duration-300">
               Get a demo
             </a>
-            <a href={data.ctaPrimary?.url || "/signup"} className="text-sm font-bold text-white bg-klaviyo-blue px-5 py-3 rounded hover:bg-blue-700 transition-colors shadow-sm">
+            <a href={data.ctaPrimary?.url || "/signup"} className="text-sm font-bold text-white bg-realify-blue px-5 py-3 rounded hover:bg-blue-700 transition-colors shadow-sm">
               {data.ctaPrimary?.label || "Sign up"}
             </a>
           </div>
@@ -158,7 +158,7 @@ const Navbar = ({ data }) => {
               <div className="pt-6 flex flex-col gap-4">
                 <a href={data.ctaSecondary?.url || "/login"} className="text-center font-bold text-gray-800">{data.ctaSecondary?.label || "Log in"}</a>
                 <a href="/demo" className="text-center font-bold border-2 border-black py-3 rounded">Get a demo</a>
-                <a href={data.ctaPrimary?.url || "/signup"} className="text-center font-bold text-white bg-klaviyo-blue py-3 rounded">{data.ctaPrimary?.label || "Sign up"}</a>
+                <a href={data.ctaPrimary?.url || "/signup"} className="text-center font-bold text-white bg-realify-blue py-3 rounded">{data.ctaPrimary?.label || "Sign up"}</a>
               </div>
             </div>
           </motion.div>

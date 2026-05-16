@@ -26,7 +26,7 @@ const seed = async () => {
 
     await Navbar.deleteMany({});
     await Navbar.create({
-        logo: '/images/klaviyo-logo.svg',
+        logo: '/images/realify-logo.svg',
         ctaPrimary: { label: 'Get started free', url: '/signup' },
         ctaSecondary: { label: 'Login', url: '/login' },
         navLinks: [
@@ -48,7 +48,7 @@ const seed = async () => {
     await Stats.deleteMany({});
     await Stats.create({
         stats: [
-            { value: '167,000+', label: 'brands trust Realify.Ai' },
+            { value: '167,000+', label: 'brands trust Realify.AI' },
             { value: '$3.7B+', label: 'revenue driven' },
             { value: '350+', label: 'integrations' },
         ]
@@ -83,7 +83,7 @@ const seed = async () => {
         sectionTitle: 'Loved by thousands of brands',
         testimonials: [
             {
-                quote: 'Realify.ai has completely transformed how we reach our customers.',
+                quote: 'Realify.AI has completely transformed how we reach our customers.',
                 authorName: 'Jane Doe',
                 authorRole: 'CEO',
                 company: 'BrandX',
@@ -137,7 +137,7 @@ const seed = async () => {
 
     await Footer.deleteMany({});
     await Footer.create({
-        logo: '/images/klaviyo-logo.svg',
+        logo: '/images/realify-logo.svg',
         tagline: 'The B2C CRM',
         columns: [
             {
@@ -156,14 +156,14 @@ const seed = async () => {
             }
         ],
         socialLinks: [
-            { platform: 'Twitter', url: 'https://twitter.com/klaviyo', icon: 'twitter' },
-            { platform: 'LinkedIn', url: 'https://linkedin.com/company/klaviyo', icon: 'linkedin' },
+            { platform: 'Twitter', url: 'https://twitter.com/realify', icon: 'twitter' },
+            { platform: 'LinkedIn', url: 'https://linkedin.com/company/realify', icon: 'linkedin' },
         ],
         legalLinks: [
             { label: 'Privacy Policy', url: '/privacy' },
             { label: 'Terms of Service', url: '/terms' },
         ],
-        copyright: '© 2024 Realify.Ai, Inc.'
+        copyright: '© 2024 Realify.AI, Inc.'
     });
 
     console.log('✅ Seed complete');

@@ -4,13 +4,13 @@
 @theme {
   --font-sans: 'Inter', -apple-system, sans-serif;
   --font-serif: 'Newsreader', Georgia, serif;
-  --color-klaviyo-dark: #1e1e1e;
-  --color-klaviyo-bg: #fcf9f4;
-  --color-klaviyo-peach: #ffb19b;
-  --color-klaviyo-green: #ccff00;
-  --color-klaviyo-blue: #0044ff;
-  --color-klaviyo-gray-100: #f5f5f5;
-  --color-klaviyo-gray-200: #eaeaea;
+  --color-realify-dark: #1e1e1e;
+  --color-realify-bg: #fcf9f4;
+  --color-realify-peach: #ffb19b;
+  --color-realify-green: #ccff00;
+  --color-realify-blue: #0044ff;
+  --color-realify-gray-100: #f5f5f5;
+  --color-realify-gray-200: #eaeaea;
 }
 
 :root {
@@ -20,8 +20,8 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-klaviyo-bg);
-  color: var(--color-klaviyo-dark);
+  background-color: var(--color-realify-bg);
+  color: var(--color-realify-dark);
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -31,11 +31,11 @@ h1, h2, h3, .font-serif {
   font-family: var(--font-serif);
 }
 
-.bg-klaviyo-bg { background-color: var(--color-klaviyo-bg); }
-.text-klaviyo-dark { color: var(--color-klaviyo-dark); }
-.bg-klaviyo-dark { background-color: var(--color-klaviyo-dark); }
-.bg-klaviyo-blue { background-color: var(--color-klaviyo-blue); }
-.text-klaviyo-blue { color: var(--color-klaviyo-blue); }
+.bg-realify-bg { background-color: var(--color-realify-bg); }
+.text-realify-dark { color: var(--color-realify-dark); }
+.bg-realify-dark { background-color: var(--color-realify-dark); }
+.bg-realify-blue { background-color: var(--color-realify-blue); }
+.text-realify-blue { color: var(--color-realify-blue); }
 
 
 /* Custom utilities if needed */

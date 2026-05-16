@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 @theme {
-  --color-klaviyo-bg: #fcf9f4;
-  --color-klaviyo-dark: #1e1e1e;
-  --color-klaviyo-blue: #2352f8;
-  --color-klaviyo-green: #e9f5d9;
+  --color-realify-bg: #fcf9f4;
+  --color-realify-dark: #1e1e1e;
+  --color-realify-blue: #2352f8;
+  --color-realify-green: #e9f5d9;
 }
 
 body {

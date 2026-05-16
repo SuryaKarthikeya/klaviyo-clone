@@ -5,7 +5,7 @@ const Integrations = ({ data }) => {
   if (!data || !data.integrations) return null;
 
   return (
-    <div className="py-24 bg-klaviyo-bg border-y border-gray-100">
+    <div className="py-24 bg-realify-bg border-y border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         
         <motion.div
@@ -15,7 +15,7 @@ const Integrations = ({ data }) => {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h2 className="font-serif text-3xl md:text-5xl font-medium text-klaviyo-dark mb-4">{data.sectionTitle}</h2>
+          <h2 className="font-serif text-3xl md:text-5xl font-medium text-realify-dark mb-4">{data.sectionTitle}</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             {data.subtitle}
           </p>

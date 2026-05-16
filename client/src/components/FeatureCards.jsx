@@ -5,7 +5,7 @@ const FeatureCards = ({ data }) => {
   if (!data || !data.features) return null;
 
   return (
-    <div className="py-32 bg-klaviyo-bg">
+    <div className="py-32 bg-realify-bg">
       <div className="max-w-[1400px] mx-auto px-6">
         
         <div className="text-center mb-20">
@@ -14,7 +14,7 @@ const FeatureCards = ({ data }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.6, ease: "easeOut" }}
-            className="font-serif text-4xl md:text-[4rem] leading-tight font-medium text-klaviyo-dark mb-6 tracking-tight"
+            className="font-serif text-4xl md:text-[4rem] leading-tight font-medium text-realify-dark mb-6 tracking-tight"
           >
             {data.sectionTitle || 'Autonomous agents that do the work'}
           </motion.h2>
@@ -47,13 +47,13 @@ const FeatureCards = ({ data }) => {
                 <div className="p-10 lg:p-14 flex-1">
                   <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-8 border border-gray-100 shadow-sm">
                     {/* Render icon conditionally or fallback SVG */}
-                    <svg className="w-6 h-6 text-klaviyo-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    <svg className="w-6 h-6 text-realify-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                   </div>
                   <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{feature.title}</h3>
                   <p className="text-xl text-gray-600 mb-10 leading-relaxed">
                     {feature.description}
                   </p>
-                  <a href={feature.ctaUrl || "#"} className="inline-flex items-center text-lg font-bold text-klaviyo-blue group-hover:text-blue-800 transition-colors">
+                  <a href={feature.ctaUrl || "#"} className="inline-flex items-center text-lg font-bold text-realify-blue group-hover:text-blue-800 transition-colors">
                     {feature.ctaLabel} <span className="ml-2 group-hover:translate-x-1 transition-transform">&rarr;</span>
                   </a>
                 </div>

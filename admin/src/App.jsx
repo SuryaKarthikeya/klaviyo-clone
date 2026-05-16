@@ -74,11 +74,11 @@ function App() {
       {/* Sidebar */}
       <div className="w-64 bg-white border-r border-gray-200 flex flex-col shadow-sm z-10">
         <div className="p-6 border-b border-gray-200">
-          <h1 className="text-xl font-bold tracking-tight text-klaviyo-blue flex items-center gap-2">
+          <h1 className="text-xl font-bold tracking-tight text-realify-blue flex items-center gap-2">
             <LayoutDashboard className="w-6 h-6" />
             Admin Panel
           </h1>
-          <p className="text-xs text-gray-500 mt-1">Realify.ai Content Manager</p>
+          <p className="text-xs text-gray-500 mt-1">Realify.AI Content Manager</p>
         </div>
         
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">
@@ -88,7 +88,7 @@ function App() {
               onClick={() => setActiveTab(tab.id)}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-left text-sm font-medium transition-colors ${
                 activeTab === tab.id 
-                  ? 'bg-klaviyo-blue/10 text-klaviyo-blue' 
+                  ? 'bg-realify-blue/10 text-realify-blue' 
                   : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
               }`}
             >

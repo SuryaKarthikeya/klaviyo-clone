@@ -7,7 +7,7 @@ const CaseStudies = ({ data }) => {
   if (!data || !data.testimonials) return null;
 
   return (
-    <div className="py-32 bg-klaviyo-bg overflow-hidden">
+    <div className="py-32 bg-realify-bg overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6">
         
         <motion.div 
@@ -17,7 +17,7 @@ const CaseStudies = ({ data }) => {
           transition={{ duration: 0.6 }}
           className="mb-12 flex justify-between items-end pb-4"
         >
-          <h2 className="font-serif text-4xl md:text-[4rem] leading-tight font-medium text-klaviyo-dark max-w-3xl tracking-tight">
+          <h2 className="font-serif text-4xl md:text-[4rem] leading-tight font-medium text-realify-dark max-w-3xl tracking-tight">
             {data.sectionTitle || "Loved by thousands of brands"}
           </h2>
           <div className="hidden md:flex gap-4">

@@ -13,10 +13,10 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-klaviyo-bg">
+      <div className="min-h-screen flex items-center justify-center bg-realify-bg">
         <div className="flex flex-col items-center">
-          <div className="w-12 h-12 border-4 border-gray-200 border-t-klaviyo-dark rounded-full animate-spin mb-4"></div>
-          <p className="text-klaviyo-dark font-medium">Loading Klaviyo...</p>
+          <div className="w-12 h-12 border-4 border-gray-200 border-t-realify-dark rounded-full animate-spin mb-4"></div>
+          <p className="text-realify-dark font-medium">Loading Realify.AI...</p>
         </div>
       </div>
     );
@@ -24,7 +24,7 @@ function App() {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-klaviyo-bg">
+      <div className="min-h-screen flex items-center justify-center bg-realify-bg">
         <div className="bg-red-50 text-red-600 p-6 rounded-lg shadow-sm border border-red-100 max-w-lg text-center">
           <h2 className="text-xl font-bold mb-2">Error loading data</h2>
           <p>{error}</p>
@@ -35,7 +35,7 @@ function App() {
   }
 
   return (
-    <div className="font-sans antialiased text-klaviyo-dark bg-klaviyo-bg">
+    <div className="font-sans antialiased text-realify-dark bg-realify-bg">
       {/* 
         Pass respective data slices to each component. 
         Note: The seed data structure is mapped closely to what we need.
