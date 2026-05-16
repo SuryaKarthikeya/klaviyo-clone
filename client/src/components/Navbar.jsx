@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Search, Globe, Menu, X, ArrowRight } from 'lucide-react';
 
-const Navbar = () => {
+const Navbar = ({ data }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeMenu, setActiveMenu] = useState(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
@@ -15,15 +15,16 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  if (!data) return null;
+
   const handleMouseEnter = (menu) => setActiveMenu(menu);
   const handleMouseLeave = () => setActiveMenu(null);
 
-  const navLinks = [
-    { name: 'Platform', hasDropdown: true },
-    { name: 'Channels', hasDropdown: true },
-    { name: 'Features', hasDropdown: true },
-    { name: 'Resources', hasDropdown: true },
-    { name: 'Pricing', hasDropdown: false },
+  // Fallback to static if API doesn't provide them
+  const navLinks = data.navLinks || [
+    { label: 'Platform', hasDropdown: true },
+    { label: 'Pricing', hasDropdown: false },
+    { label: 'Resources', hasDropdown: true },
   ];
 
   const DropdownContent = ({ title }) => (
@@ -70,24 +71,27 @@ const Navbar = () => {
           
           {/* Logo & Links */}
           <div className="flex items-center gap-10">
-            <a href="/" className="text-4xl font-bold tracking-tighter text-black lowercase">
-              klaviyo
+            <a href="/" className="text-4xl font-bold tracking-tighter text-black lowercase flex items-center">
+              {data.logo ? (
+                 <img src={data.logo} alt="Klaviyo Logo" className="h-8" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+              ) : null}
+              <span style={{ display: data.logo ? 'none' : 'block' }}>klaviyo</span>
             </a>
             <div className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
                 <div 
-                  key={link.name} 
+                  key={link.label} 
                   className="relative group h-full py-2"
-                  onMouseEnter={() => link.hasDropdown && handleMouseEnter(link.name)}
+                  onMouseEnter={() => link.hasDropdown && handleMouseEnter(link.label)}
                 >
-                  <button className="flex items-center text-sm font-semibold text-gray-800 group-hover:text-black transition-colors relative">
-                    {link.name}
+                  <a href={link.url || "#"} className="flex items-center text-sm font-semibold text-gray-800 group-hover:text-black transition-colors relative">
+                    {link.label}
                     {link.hasDropdown && (
-                      <ChevronDown className={`ml-1.5 w-4 h-4 text-gray-400 transition-transform duration-200 ${activeMenu === link.name ? 'rotate-180' : ''}`} />
+                      <ChevronDown className={`ml-1.5 w-4 h-4 text-gray-400 transition-transform duration-200 ${activeMenu === link.label ? 'rotate-180' : ''}`} />
                     )}
                     {/* Hover Red Underline */}
                     <span className="absolute -bottom-6 left-0 w-full h-[2px] bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
-                  </button>
+                  </a>
                 </div>
               ))}
             </div>
@@ -102,15 +106,15 @@ const Navbar = () => {
               <Globe className="w-4 h-4 mr-1.5" />
               EN
             </button>
-            <a href="/login" className="text-sm font-semibold text-gray-800 hover:text-black transition-colors relative group">
-              Log in
+            <a href={data.ctaSecondary?.url || "/login"} className="text-sm font-semibold text-gray-800 hover:text-black transition-colors relative group">
+              {data.ctaSecondary?.label || "Log in"}
               <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </a>
             <a href="/demo" className="text-sm font-bold text-black border-2 border-black px-5 py-2.5 rounded hover:bg-black hover:text-white transition-all duration-300">
               Get a demo
             </a>
-            <a href="/signup" className="text-sm font-bold text-white bg-blue-600 px-5 py-3 rounded hover:bg-blue-700 transition-colors shadow-sm">
-              Sign up
+            <a href={data.ctaPrimary?.url || "/signup"} className="text-sm font-bold text-white bg-klaviyo-blue px-5 py-3 rounded hover:bg-blue-700 transition-colors shadow-sm">
+              {data.ctaPrimary?.label || "Sign up"}
             </a>
           </div>
 
@@ -147,14 +151,14 @@ const Navbar = () => {
           >
             <div className="p-6 space-y-4">
               {navLinks.map((link) => (
-                <div key={link.name} className="py-2 border-b border-gray-50 text-lg font-bold text-gray-800">
-                  {link.name}
+                <div key={link.label} className="py-2 border-b border-gray-50 text-lg font-bold text-gray-800">
+                  <a href={link.url || "#"}>{link.label}</a>
                 </div>
               ))}
               <div className="pt-6 flex flex-col gap-4">
-                <a href="/login" className="text-center font-bold text-gray-800">Log in</a>
+                <a href={data.ctaSecondary?.url || "/login"} className="text-center font-bold text-gray-800">{data.ctaSecondary?.label || "Log in"}</a>
                 <a href="/demo" className="text-center font-bold border-2 border-black py-3 rounded">Get a demo</a>
-                <a href="/signup" className="text-center font-bold text-white bg-blue-600 py-3 rounded">Sign up</a>
+                <a href={data.ctaPrimary?.url || "/signup"} className="text-center font-bold text-white bg-klaviyo-blue py-3 rounded">{data.ctaPrimary?.label || "Sign up"}</a>
               </div>
             </div>
           </motion.div>

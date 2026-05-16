@@ -17,7 +17,7 @@ const seed = async () => {
     await Hero.deleteMany({});
     await Hero.create({
         badge: "New: K:AI Agents are here",
-        headline: "The B2C CRM that powers smarter marketing",
+        headline: "The Realify.ai that powers smarter marketing",
         subHeadline: "Unify email, SMS, and AI to drive growth and retention.",
         primaryCTA: { label: "Get started free", url: "/signup" },
         secondaryCTA: { label: "Watch Demo", url: "/demo" },
@@ -48,7 +48,7 @@ const seed = async () => {
     await Stats.deleteMany({});
     await Stats.create({
         stats: [
-            { value: '167,000+', label: 'brands trust Klaviyo' },
+            { value: '167,000+', label: 'brands trust Realify.Ai' },
             { value: '$3.7B+', label: 'revenue driven' },
             { value: '350+', label: 'integrations' },
         ]
@@ -83,7 +83,7 @@ const seed = async () => {
         sectionTitle: 'Loved by thousands of brands',
         testimonials: [
             {
-                quote: 'Klaviyo has completely transformed how we reach our customers.',
+                quote: 'Realify.ai has completely transformed how we reach our customers.',
                 authorName: 'Jane Doe',
                 authorRole: 'CEO',
                 company: 'BrandX',
@@ -163,7 +163,7 @@ const seed = async () => {
             { label: 'Privacy Policy', url: '/privacy' },
             { label: 'Terms of Service', url: '/terms' },
         ],
-        copyright: '© 2024 Klaviyo, Inc.'
+        copyright: '© 2024 Realify.Ai, Inc.'
     });
 
     console.log('✅ Seed complete');

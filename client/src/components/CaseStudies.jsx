@@ -1,37 +1,10 @@
 import React, { useRef } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
-const CaseStudies = () => {
-  const cases = [
-    { stat: '65%', label: 'YoY growth in Klaviyo-attributed revenue', brand: 'Craftd London', image: '/assets/klaviyo/case_study_1.jpg' },
-    { stat: '85%', label: 'increase in SMS revenue per recipient', brand: 'Dermalogica', image: '/assets/klaviyo/case_study_2.jpg' },
-    { stat: '62%', label: 'of revenue attributed to Klaviyo', brand: 'Paul Smith', image: '/assets/klaviyo/case_study_3.jpg' },
-    { stat: '19.4%', label: 'SMS click rate', brand: 'Castore', image: '/assets/klaviyo/case_study_1.jpg' },
-    { stat: '7x', label: 'WhatsApp ROI in 4 months', brand: 'Jimmy Joy', image: '/assets/klaviyo/case_study_2.jpg' },
-  ];
+const CaseStudies = ({ data }) => {
+  const scrollContainerRef = useRef(null);
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15
-      }
-    }
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { 
-      opacity: 1, 
-      x: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
-    }
-  };
+  if (!data || !data.testimonials) return null;
 
   return (
     <div className="py-32 bg-klaviyo-bg overflow-hidden">
@@ -45,60 +18,87 @@ const CaseStudies = () => {
           className="mb-12 flex justify-between items-end pb-4"
         >
           <h2 className="font-serif text-4xl md:text-[4rem] leading-tight font-medium text-klaviyo-dark max-w-3xl tracking-tight">
-            Fueling growth for brands that don't settle
+            {data.sectionTitle || "Loved by thousands of brands"}
           </h2>
           <div className="hidden md:flex gap-4">
-            <button className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-black transition-colors">
+            <button 
+              onClick={() => scrollContainerRef.current.scrollBy({ left: -400, behavior: 'smooth' })}
+              className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
               &larr;
             </button>
-            <button className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 hover:border-black transition-colors">
+            <button 
+              onClick={() => scrollContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' })}
+              className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-100 transition-colors"
+            >
               &rarr;
             </button>
           </div>
         </motion.div>
+      </div>
 
-        {/* Carousel Container */}
-        <motion.div 
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="flex space-x-6 overflow-x-auto pb-12 snap-x snap-mandatory scroll-smooth"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-        >
-          {cases.map((study, index) => (
-            <motion.div 
-              key={index}
-              variants={cardVariants}
-              whileHover={{ y: -8, transition: { duration: 0.2 } }}
-              className="min-w-[85vw] md:min-w-[400px] lg:min-w-[450px] flex-shrink-0 rounded-2xl p-10 snap-center cursor-pointer border border-transparent hover:border-blue-600 transition-all duration-300 group shadow-sm hover:shadow-xl flex flex-col justify-between relative overflow-hidden h-[600px]"
+      {/* Horizontal Scroll Container */}
+      <div 
+        ref={scrollContainerRef}
+        className="flex overflow-x-auto gap-6 px-6 md:px-12 pb-12 snap-x snap-mandatory hide-scrollbar"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
+        {data.testimonials.map((study, index) => {
+          // Provide fallback images for the 1:1 visual match
+          const fallbacks = [
+            "/assets/klaviyo/case_study_1.jpg", 
+            "/assets/klaviyo/case_study_2.jpg", 
+            "/assets/klaviyo/case_study_3.jpg"
+          ];
+          const bgImage = fallbacks[index % fallbacks.length];
+          
+          return (
+            <div 
+              key={study._id || index} 
+              className="min-w-[85vw] md:min-w-[600px] lg:min-w-[800px] h-[500px] md:h-[600px] rounded-3xl snap-center shrink-0 relative overflow-hidden group cursor-pointer"
             >
+              {/* Background Image with Zoom Effect */}
               <div 
-                className="absolute inset-0 z-0 transition-transform duration-700 group-hover:scale-105"
-                style={{ 
-                  backgroundImage: `url(${study.image})`, 
-                  backgroundSize: 'cover', 
-                  backgroundPosition: 'center' 
-                }}
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
+                style={{ backgroundImage: `url(${study.avatarUrl || bgImage})` }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
               
-              <div className="relative z-20 mt-auto">
-                <div className="mb-8">
-                  <div className="text-[4rem] md:text-[5rem] font-bold text-white mb-2 leading-none tracking-tighter drop-shadow-md">{study.stat}</div>
-                  <div className="text-xl md:text-2xl text-gray-200 font-medium leading-tight max-w-sm drop-shadow-sm">{study.label}</div>
+              {/* Dark Gradient Overlay for Text Readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10" />
+
+              <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-between z-20 text-white">
+                <div className="w-32 h-12 flex items-center">
+                  {study.companyLogo ? (
+                    <img src={study.companyLogo} alt={study.company} className="max-h-full object-contain filter brightness-0 invert" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+                  ) : null}
+                  <span style={{ display: study.companyLogo ? 'none' : 'block' }} className="text-xl font-bold tracking-widest uppercase">{study.company}</span>
                 </div>
-                <div className="flex justify-between items-center border-t border-white/20 pt-6">
-                  <span className="font-bold text-white text-xl md:text-2xl uppercase tracking-widest">{study.brand}</span>
-                  <span className="flex items-center text-white font-bold text-lg group-hover:text-klaviyo-peach transition-colors">
-                    Read story
-                    <ArrowRight className="ml-2 w-5 h-5 transition-transform group-hover:translate-x-2" />
-                  </span>
+                
+                <div>
+                  <div className="flex gap-8 mb-6 border-b border-white/20 pb-6">
+                    {study.metrics?.map((metric, i) => (
+                      <div key={i}>
+                        <div className="text-4xl md:text-5xl font-medium tracking-tighter mb-1">{metric.value}</div>
+                        <div className="text-sm font-bold uppercase tracking-widest text-white/80">{metric.label}</div>
+                      </div>
+                    ))}
+                  </div>
+                  <h3 className="text-2xl md:text-4xl font-medium leading-tight mb-6 max-w-2xl">
+                    "{study.quote}"
+                  </h3>
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium text-white/80">
+                      {study.authorName}, {study.authorRole} @ {study.company}
+                    </p>
+                    <button className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center transform group-hover:translate-x-2 transition-transform">
+                      &rarr;
+                    </button>
+                  </div>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

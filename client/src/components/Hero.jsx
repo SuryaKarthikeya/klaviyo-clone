@@ -1,7 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const Hero = () => {
+const Hero = ({ data, logoStrip }) => {
+  // Graceful fallback if data is somehow missing
+  if (!data) return null;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -19,6 +22,11 @@ const Hero = () => {
     }
   };
 
+  // Helper to fallback to our premium scraped image if the API returns a generic path
+  const heroImage = data.backgroundImage && data.backgroundImage.includes('hero-bg') 
+    ? "/assets/klaviyo/hero.webp" 
+    : data.backgroundImage;
+
   return (
     <div className="relative pt-32 pb-24 overflow-hidden bg-klaviyo-bg">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
@@ -31,26 +39,27 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
-            <motion.div variants={itemVariants} className="mb-6">
-              <a href="#" className="inline-flex items-center px-4 py-1.5 rounded-full border border-gray-300 bg-transparent text-gray-800 text-sm font-medium hover:border-gray-400 transition-colors">
-                <span className="mr-2 px-2 py-0.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider">New</span>
-                Klaviyo expands Claude integration with agentic marketing &rarr;
-              </a>
-            </motion.div>
+            {data.badge && (
+              <motion.div variants={itemVariants} className="mb-6">
+                <a href="#" className="inline-flex items-center px-4 py-1.5 rounded-full border border-gray-300 bg-transparent text-gray-800 text-sm font-medium hover:border-gray-400 transition-colors">
+                  <span className="mr-2 px-2 py-0.5 rounded-full bg-black text-white text-xs font-bold uppercase tracking-wider">New</span>
+                  {data.badge.replace('New: ', '')} &rarr;
+                </a>
+              </motion.div>
+            )}
 
             <motion.h1 
               variants={itemVariants}
               className="font-serif text-[4rem] leading-[1.05] lg:text-[5.5rem] font-medium tracking-tight text-klaviyo-dark mb-6"
             >
-              The autonomous <br className="hidden md:block"/>
-              B2C CRM
+              {data.headline}
             </motion.h1>
             
             <motion.p 
               variants={itemVariants}
               className="text-xl md:text-[1.35rem] text-gray-700 mb-10 font-normal max-w-2xl leading-relaxed"
             >
-              Turn your marketing, analytics, and service into always-on growth engines. Personalise, learn from, and improve every customer experience across all your channels in real-time.
+              {data.subHeadline}
             </motion.p>
             
             <motion.div 
@@ -62,9 +71,9 @@ const Hero = () => {
                 placeholder="Work email" 
                 className="flex-1 px-5 py-4 border border-gray-300 rounded bg-white text-lg focus:outline-none focus:border-klaviyo-blue transition-colors"
               />
-              <button className="px-8 py-4 rounded bg-klaviyo-blue text-white font-medium text-lg hover:bg-blue-700 transition-all duration-300 whitespace-nowrap">
-                Sign up
-              </button>
+              <a href={data.primaryCTA?.url || "#"} className="px-8 py-4 rounded bg-klaviyo-blue text-white font-medium text-lg hover:bg-blue-700 transition-all duration-300 whitespace-nowrap text-center">
+                {data.primaryCTA?.label || "Sign up"}
+              </a>
             </motion.div>
             <motion.p variants={itemVariants} className="mt-4 text-sm text-gray-500">
               No credit card required.
@@ -78,32 +87,48 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            <div className="relative rounded-2xl overflow-hidden flex items-center justify-center">
+            <div className="relative rounded-2xl overflow-hidden flex items-center justify-center shadow-xl">
               <img 
-                src="/assets/klaviyo/hero.webp" 
+                src={heroImage} 
                 alt="Klaviyo Agentic Marketing" 
                 className="w-full h-auto object-cover"
+                onError={(e) => { e.target.src = "/assets/klaviyo/hero.webp"; }}
               />
             </div>
           </motion.div>
         </div>
         
         {/* Logos Section */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="mt-32 pt-10"
-        >
-          <p className="text-sm font-bold text-gray-800 uppercase mb-8 text-center tracking-wider">
-            Powering 196,000+ relationship-driven brands across 100 countries
-          </p>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
-            <img src="/assets/klaviyo/logo_1.png" alt="Brand Logo" className="h-8 md:h-12 w-auto object-contain" />
-            <img src="/assets/klaviyo/logo_2.png" alt="Brand Logo" className="h-8 md:h-12 w-auto object-contain" />
-            <img src="/assets/klaviyo/logo_3.png" alt="Brand Logo" className="h-8 md:h-12 w-auto object-contain" />
-          </div>
-        </motion.div>
+        {logoStrip && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="mt-32 pt-10"
+          >
+            <p className="text-sm font-bold text-gray-800 uppercase mb-8 text-center tracking-wider">
+              {logoStrip.label}
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-20">
+              {logoStrip.logos?.map((logo, index) => {
+                // Fallback mapping for exact visual match if their seeded logos fail
+                const localImages = ["/assets/klaviyo/logo_1.png", "/assets/klaviyo/logo_2.png", "/assets/klaviyo/logo_3.png"];
+                const fallbackImg = localImages[index % localImages.length];
+                
+                return (
+                  <a key={logo._id || index} href={logo.url} target="_blank" rel="noreferrer">
+                    <img 
+                      src={logo.imageUrl} 
+                      alt={logo.name} 
+                      className="h-8 md:h-12 w-auto object-contain opacity-50 grayscale hover:grayscale-0 transition-all duration-500" 
+                      onError={(e) => { e.target.src = fallbackImg; }}
+                    />
+                  </a>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
 
       </div>
     </div>
