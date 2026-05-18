@@ -8,7 +8,7 @@ const useHomepageData = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/homepage');
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/homepage`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch homepage data');
                 }
