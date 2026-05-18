@@ -1,4 +1,4 @@
-# KlVIYO Clone
+# KLAVIYO Clone
 
 A full-stack web application that replicates the modern UI and core architecture of Klaviyo, the popular marketing automation and B2C CRM platform.
 
