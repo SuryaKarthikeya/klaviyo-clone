@@ -18,7 +18,7 @@ function App() {
 
   const fetchData = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/homepage');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/homepage`);
       const json = await res.json();
       setData(json);
     } catch (err) {
@@ -35,7 +35,7 @@ function App() {
   const handleSave = async (section, payload) => {
     const loadingToast = toast.loading('Saving changes...');
     try {
-      const res = await fetch(`http://localhost:5000/api/${section}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/${section}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
