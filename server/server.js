@@ -7,7 +7,7 @@ const homepageRoutes = require('./routes/homepage');
 connectDB();
 
 const app = express();
-app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'] }));   // React frontend and admin ports
+app.use(cors({ origin: ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'https://klaviyo-client-m9nj.onrender.com'] }));   // React frontend and admin ports
 app.use(express.json());
 
 app.use('/api', homepageRoutes);
