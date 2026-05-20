@@ -105,13 +105,13 @@ const Hero = ({ data, logoStrip }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.6 }}
-        className="bg-realify-bg border-b border-gray-200 py-8 px-6"
+        className="bg-realify-bg border-b border-gray-200 py-10"
       >
-        <div className="max-w-[1400px] mx-auto">
-          <p className="text-xs font-bold text-gray-500 uppercase mb-6 tracking-widest">
+        <div className="max-w-[1400px] mx-auto px-6 text-center">
+          <p className="text-xs font-bold text-gray-400 uppercase mb-8 tracking-widest">
             {logoStrip.label}
           </p>
-          <div className="flex flex-wrap items-center gap-10 md:gap-16">
+          <div className="flex flex-wrap justify-center items-center gap-10 md:gap-16">
             {logoStrip.logos?.map((logo, index) => {
               const localImages = ["/assets/klaviyo/logo_1.png", "/assets/klaviyo/logo_2.png", "/assets/klaviyo/logo_3.png"];
               const fallbackImg = localImages[index % localImages.length];
@@ -120,7 +120,7 @@ const Hero = ({ data, logoStrip }) => {
                   <img
                     src={logo.imageUrl}
                     alt={logo.name}
-                    className="h-6 md:h-8 w-auto object-contain opacity-50 grayscale hover:opacity-80 hover:grayscale-0 transition-all duration-500"
+                    className="h-7 md:h-9 w-auto object-contain opacity-40 grayscale hover:opacity-70 hover:grayscale-0 transition-all duration-500"
                     onError={(e) => { e.target.src = fallbackImg; }}
                   />
                 </a>
