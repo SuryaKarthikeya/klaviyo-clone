@@ -101,18 +101,40 @@ const FeaturesForm = ({ data, onSave }) => {
                     <label className="block text-xs font-semibold text-gray-500 mb-1">CTA Label</label>
                     <input
                       type="text"
-                      value={feature.ctaLabel}
+                      value={feature.ctaLabel || ''}
                       onChange={(e) => handleFeatureChange(index, 'ctaLabel', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded text-sm"
+                      placeholder="e.g. Learn more"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 mb-1">CTA URL</label>
+                    <input
+                      type="text"
+                      value={feature.ctaUrl || ''}
+                      onChange={(e) => handleFeatureChange(index, 'ctaUrl', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-sm"
+                      placeholder="e.g. /email"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 mb-1">Icon Name (Lucide)</label>
+                    <input
+                      type="text"
+                      value={feature.icon || ''}
+                      onChange={(e) => handleFeatureChange(index, 'icon', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-sm"
+                      placeholder="e.g. Mail, Smartphone, Zap"
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-gray-500 mb-1">Image URL</label>
                     <input
                       type="text"
-                      value={feature.imageUrl}
+                      value={feature.imageUrl || ''}
                       onChange={(e) => handleFeatureChange(index, 'imageUrl', e.target.value)}
                       className="w-full px-3 py-2 border border-gray-300 rounded text-sm"
+                      placeholder="e.g. /images/feature.jpg"
                     />
                   </div>
                 </div>

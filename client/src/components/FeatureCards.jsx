@@ -1,5 +1,31 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import * as LucideIcons from 'lucide-react';
+
+const renderIcon = (iconName) => {
+  if (!iconName) {
+    return <LucideIcons.Sparkles className="w-6 h-6 text-realify-dark" />;
+  }
+
+  const mapping = {
+    email: 'Mail',
+    sms: 'MessageSquare',
+    analytics: 'BarChart3',
+    service: 'LifeBuoy',
+    integrations: 'Cpu'
+  };
+
+  const lookupName = mapping[iconName.toLowerCase()] || iconName;
+
+  const camelCased = lookupName
+    .split('-')
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+    .join('');
+
+  const IconComponent = LucideIcons[camelCased] || LucideIcons[lookupName] || LucideIcons.Sparkles;
+  
+  return <IconComponent className="w-6 h-6 text-realify-dark" />;
+};
 
 const FeatureCards = ({ data }) => {
   if (!data || !data.features) return null;
@@ -46,8 +72,7 @@ const FeatureCards = ({ data }) => {
               >
                 <div className="p-10 lg:p-14 flex-1">
                   <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-8 border border-gray-100 shadow-sm">
-                    {/* Render icon conditionally or fallback SVG */}
-                    <svg className="w-6 h-6 text-realify-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    {renderIcon(feature.icon)}
                   </div>
                   <h3 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">{feature.title}</h3>
                   <p className="text-xl text-gray-600 mb-10 leading-relaxed">

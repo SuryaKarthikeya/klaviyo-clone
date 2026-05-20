@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Footer = ({ data }) => {
-  if (!data || !data.footer) return null;
+  if (!data) return null;
 
   // Helper to map string icon names from DB to simple span elements
   const renderIcon = (iconName) => {
@@ -21,15 +21,15 @@ const Footer = ({ data }) => {
           
           <div className="col-span-2 md:col-span-3 lg:col-span-2 pr-8">
             <h3 className="text-3xl font-bold tracking-tighter mb-4 flex items-center">
-              {data.footer.logo ? (
-                <img src={data.footer.logo} alt="Realify.AI" className="h-8 filter brightness-0 invert" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+              {data.logo ? (
+                <img src={data.logo} alt="Realify.AI" className="h-8 filter brightness-0 invert" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
               ) : null}
-              <span style={{ display: data.footer.logo ? 'none' : 'block' }}>Realify.AI</span>
+              <span style={{ display: data.logo ? 'none' : 'block' }}>Realify.AI</span>
             </h3>
-            <p className="text-gray-400 text-lg">{data.footer.tagline || 'The autonomous B2C CRM.'}</p>
+            <p className="text-gray-400 text-lg">{data.tagline || 'The autonomous B2C CRM.'}</p>
           </div>
 
-          {data.footer.columns?.map((col, index) => (
+          {data.columns?.map((col, index) => (
             <div key={col._id || index}>
               <h4 className="font-bold mb-6 text-sm tracking-wider uppercase text-gray-400">{col.heading}</h4>
               <ul className="space-y-4">
@@ -49,7 +49,7 @@ const Footer = ({ data }) => {
         {/* Bottom Bar */}
         <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex gap-6">
-            {data.footer.socialLinks?.map((social, i) => (
+            {data.socialLinks?.map((social, i) => (
               <a key={social._id || i} href={social.url} title={social.platform} className="text-gray-400 hover:text-white transition-colors">
                 {renderIcon(social.icon)}
               </a>
@@ -57,8 +57,8 @@ const Footer = ({ data }) => {
           </div>
           
           <div className="flex flex-wrap items-center gap-4 md:gap-8 text-sm text-gray-400 font-medium">
-            <span>{data.footer.copyright}</span>
-            {data.footer.legalLinks?.map((legal, i) => (
+            <span>{data.copyright}</span>
+            {data.legalLinks?.map((legal, i) => (
               <a key={legal._id || i} href={legal.url} className="hover:text-white transition-colors">{legal.label}</a>
             ))}
           </div>

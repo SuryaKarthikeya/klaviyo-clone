@@ -28,7 +28,12 @@ const Hero = ({ data, logoStrip }) => {
     : data.backgroundImage;
 
   return (
-    <div className="relative pt-32 pb-24 overflow-hidden bg-realify-bg">
+    <div 
+      className="relative pt-32 pb-24 overflow-hidden bg-realify-bg bg-cover bg-center"
+      style={data.backgroundImage ? { 
+        backgroundImage: `linear-gradient(to right, rgba(252, 249, 244, 0.95), rgba(252, 249, 244, 0.85)), url(${data.backgroundImage})` 
+      } : {}}
+    >
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
         <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -87,13 +92,25 @@ const Hero = ({ data, logoStrip }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            <div className="relative rounded-2xl overflow-hidden flex items-center justify-center shadow-xl">
-              <img 
-                src={heroImage} 
-                alt="Realify.AI Agentic Marketing" 
-                className="w-full h-auto object-cover"
-                onError={(e) => { e.target.src = "/assets/klaviyo/hero.webp"; }}
-              />
+            <div className="relative rounded-2xl overflow-hidden flex items-center justify-center shadow-xl aspect-video bg-black/5">
+              {data.videoUrl ? (
+                <video 
+                  src={data.videoUrl} 
+                  autoPlay 
+                  muted 
+                  loop 
+                  playsInline 
+                  controls
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img 
+                  src={heroImage} 
+                  alt="Realify.AI Agentic Marketing" 
+                  className="w-full h-auto object-cover"
+                  onError={(e) => { e.target.src = "/assets/klaviyo/hero.webp"; }}
+                />
+              )}
             </div>
           </motion.div>
         </div>

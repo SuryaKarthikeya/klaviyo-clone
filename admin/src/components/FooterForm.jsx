@@ -52,6 +52,44 @@ const FooterForm = ({ data, onSave }) => {
     setFormData(prev => ({ ...prev, columns: newColumns }));
   };
 
+  const handleSocialLinkChange = (index, field, value) => {
+    const newSocialLinks = [...(formData.socialLinks || [])];
+    newSocialLinks[index] = { ...newSocialLinks[index], [field]: value };
+    setFormData(prev => ({ ...prev, socialLinks: newSocialLinks }));
+  };
+
+  const addSocialLink = () => {
+    setFormData(prev => ({
+      ...prev,
+      socialLinks: [...(prev.socialLinks || []), { platform: '', url: '', icon: '' }]
+    }));
+  };
+
+  const removeSocialLink = (index) => {
+    const newSocialLinks = [...(formData.socialLinks || [])];
+    newSocialLinks.splice(index, 1);
+    setFormData(prev => ({ ...prev, socialLinks: newSocialLinks }));
+  };
+
+  const handleLegalLinkChange = (index, field, value) => {
+    const newLegalLinks = [...(formData.legalLinks || [])];
+    newLegalLinks[index] = { ...newLegalLinks[index], [field]: value };
+    setFormData(prev => ({ ...prev, legalLinks: newLegalLinks }));
+  };
+
+  const addLegalLink = () => {
+    setFormData(prev => ({
+      ...prev,
+      legalLinks: [...(prev.legalLinks || []), { label: '', url: '' }]
+    }));
+  };
+
+  const removeLegalLink = (index) => {
+    const newLegalLinks = [...(formData.legalLinks || [])];
+    newLegalLinks.splice(index, 1);
+    setFormData(prev => ({ ...prev, legalLinks: newLegalLinks }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     onSave(formData);
@@ -60,7 +98,18 @@ const FooterForm = ({ data, onSave }) => {
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       <div className="p-6 space-y-6">
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-3 gap-6">
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">Logo URL/SVG</label>
+            <input
+              type="text"
+              name="logo"
+              value={formData.logo || ''}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-blue-500 bg-white text-sm"
+              placeholder="e.g. /images/logo.svg"
+            />
+          </div>
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">Tagline</label>
             <input
@@ -68,7 +117,7 @@ const FooterForm = ({ data, onSave }) => {
               name="tagline"
               value={formData.tagline || ''}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-blue-500 bg-white text-sm"
             />
           </div>
           <div>
@@ -78,13 +127,13 @@ const FooterForm = ({ data, onSave }) => {
               name="copyright"
               value={formData.copyright || ''}
               onChange={handleChange}
-              className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-blue-500 bg-white text-sm"
             />
           </div>
         </div>
 
         <div>
-          <div className="flex justify-between items-center mb-4">
+          <div className="flex justify-between items-center mb-4 border-t pt-4">
             <h3 className="font-bold text-gray-800">Footer Columns</h3>
             <button type="button" onClick={addColumn} className="flex items-center gap-1 text-sm text-blue-600 font-medium hover:text-blue-800">
               <Plus className="w-4 h-4" /> Add Column
@@ -104,7 +153,7 @@ const FooterForm = ({ data, onSave }) => {
                     type="text"
                     value={col.heading}
                     onChange={(e) => handleColumnChange(colIndex, 'heading', e.target.value)}
-                    className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded text-sm mb-4"
+                    className="w-full max-w-xs px-3 py-2 border border-gray-300 rounded text-sm mb-4 bg-white"
                   />
                   
                   <div className="space-y-2 pl-4 border-l-2 border-gray-200">
@@ -119,14 +168,14 @@ const FooterForm = ({ data, onSave }) => {
                           placeholder="Label"
                           value={link.label}
                           onChange={(e) => handleLinkChange(colIndex, linkIndex, 'label', e.target.value)}
-                          className="flex-1 px-2 py-1 border border-gray-300 rounded text-xs"
+                          className="flex-1 px-2 py-1 border border-gray-300 rounded text-xs bg-white"
                         />
                         <input
                           type="text"
                           placeholder="URL"
                           value={link.url}
                           onChange={(e) => handleLinkChange(colIndex, linkIndex, 'url', e.target.value)}
-                          className="flex-1 px-2 py-1 border border-gray-300 rounded text-xs"
+                          className="flex-1 px-2 py-1 border border-gray-300 rounded text-xs bg-white"
                         />
                         <button type="button" onClick={() => removeLink(colIndex, linkIndex)} className="text-red-400">
                           <Trash2 className="w-3 h-3" />
@@ -139,6 +188,84 @@ const FooterForm = ({ data, onSave }) => {
             ))}
           </div>
         </div>
+
+        <div>
+          <div className="flex justify-between items-center mb-4 border-t pt-4">
+            <h3 className="font-bold text-gray-800">Social Links</h3>
+            <button type="button" onClick={addSocialLink} className="flex items-center gap-1 text-sm text-blue-600 font-medium hover:text-blue-800">
+              <Plus className="w-4 h-4" /> Add Social Link
+            </button>
+          </div>
+          
+          <div className="space-y-2">
+            {(formData.socialLinks || []).map((link, index) => (
+              <div key={index} className="flex items-center gap-4 p-3 border border-gray-100 rounded bg-gray-50">
+                <input
+                  type="text"
+                  placeholder="Platform (e.g. Twitter)"
+                  value={link.platform || ''}
+                  onChange={(e) => handleSocialLinkChange(index, 'platform', e.target.value)}
+                  className="w-40 px-3 py-1.5 border border-gray-300 rounded text-sm bg-white"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="URL (e.g. https://twitter.com/...)"
+                  value={link.url || ''}
+                  onChange={(e) => handleSocialLinkChange(index, 'url', e.target.value)}
+                  className="flex-1 px-3 py-1.5 border border-gray-300 rounded text-sm bg-white"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Icon Class/Name (e.g. twitter)"
+                  value={link.icon || ''}
+                  onChange={(e) => handleSocialLinkChange(index, 'icon', e.target.value)}
+                  className="w-40 px-3 py-1.5 border border-gray-300 rounded text-sm bg-white"
+                />
+                <button type="button" onClick={() => removeSocialLink(index)} className="text-red-500 hover:text-red-700">
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div className="flex justify-between items-center mb-4 border-t pt-4">
+            <h3 className="font-bold text-gray-800">Legal Links</h3>
+            <button type="button" onClick={addLegalLink} className="flex items-center gap-1 text-sm text-blue-600 font-medium hover:text-blue-800">
+              <Plus className="w-4 h-4" /> Add Legal Link
+            </button>
+          </div>
+          
+          <div className="space-y-2">
+            {(formData.legalLinks || []).map((link, index) => (
+              <div key={index} className="flex items-center gap-4 p-3 border border-gray-100 rounded bg-gray-50">
+                <input
+                  type="text"
+                  placeholder="Label (e.g. Privacy Policy)"
+                  value={link.label || ''}
+                  onChange={(e) => handleLegalLinkChange(index, 'label', e.target.value)}
+                  className="flex-1 px-3 py-1.5 border border-gray-300 rounded text-sm bg-white"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="URL (e.g. /privacy)"
+                  value={link.url || ''}
+                  onChange={(e) => handleLegalLinkChange(index, 'url', e.target.value)}
+                  className="flex-1 px-3 py-1.5 border border-gray-300 rounded text-sm bg-white"
+                  required
+                />
+                <button type="button" onClick={() => removeLegalLink(index)} className="text-red-500 hover:text-red-700">
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
       <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex justify-end">
         <button type="submit" className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition-colors">

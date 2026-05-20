@@ -40,7 +40,7 @@ const IntegrationsForm = ({ data, onSave }) => {
   return (
     <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
       <div className="p-6 space-y-6">
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-3 gap-6">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-1">Section Title</label>
             <input
@@ -59,6 +59,17 @@ const IntegrationsForm = ({ data, onSave }) => {
               value={formData.subtitle || ''}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-blue-500"
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">Total Count</label>
+            <input
+              type="text"
+              name="totalCount"
+              value={formData.totalCount || ''}
+              onChange={handleChange}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md outline-none focus:border-blue-500"
+              placeholder="e.g. 350+"
             />
           </div>
         </div>

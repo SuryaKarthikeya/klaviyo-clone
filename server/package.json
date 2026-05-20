@@ -18,6 +18,7 @@
         "seed": "node seed/seedData.js"
     },
     "devDependencies": {
+        "mongodb-memory-server": "^11.1.0",
         "nodemon": "^3.1.14"
     }
 }

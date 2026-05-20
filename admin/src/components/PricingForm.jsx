@@ -101,20 +101,51 @@ const PricingForm = ({ data, onSave }) => {
                       className="w-full px-3 py-2 border border-gray-300 rounded text-sm"
                     />
                   </div>
+
+                  <div className="col-span-2">
+                    <label className="block text-xs font-semibold text-gray-500 mb-1">Description</label>
+                    <input
+                      type="text"
+                      value={plan.description || ''}
+                      onChange={(e) => handlePlanChange(index, 'description', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-sm bg-white"
+                      placeholder="Plan description"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 mb-1">CTA Label</label>
+                    <input
+                      type="text"
+                      value={plan.ctaLabel || ''}
+                      onChange={(e) => handlePlanChange(index, 'ctaLabel', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-sm bg-white"
+                      placeholder="e.g. Start free trial"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-gray-500 mb-1">CTA URL</label>
+                    <input
+                      type="text"
+                      value={plan.ctaUrl || ''}
+                      onChange={(e) => handlePlanChange(index, 'ctaUrl', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-sm bg-white"
+                      placeholder="e.g. /signup"
+                    />
+                  </div>
                   <div className="col-span-2">
                     <label className="block text-xs font-semibold text-gray-500 mb-1">Features (comma separated)</label>
                     <input
                       type="text"
-                      value={plan.features?.join(', ')}
+                      value={plan.features?.join(', ') || ''}
                       onChange={(e) => handlePlanChange(index, 'features', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded text-sm"
+                      className="w-full px-3 py-2 border border-gray-300 rounded text-sm bg-white"
                     />
                   </div>
                   <div>
                     <label className="flex items-center gap-2 text-xs font-semibold text-gray-500 mt-2">
                       <input
                         type="checkbox"
-                        checked={plan.highlighted}
+                        checked={plan.highlighted || false}
                         onChange={(e) => handlePlanChange(index, 'highlighted', e.target.checked)}
                       />
                       Highlighted (Recommended)
