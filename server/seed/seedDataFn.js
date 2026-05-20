@@ -16,7 +16,8 @@ const seedDataFn = async () => {
         subHeadline: "Unify email, SMS, and AI to drive growth and retention.",
         primaryCTA: { label: "Get started free", url: "/signup" },
         secondaryCTA: { label: "Watch Demo", url: "/demo" },
-        backgroundImage: "/images/hero-bg.jpg"
+        backgroundImage: "/images/hero-bg.jpg",
+        videoUrl: "/assets/klaviyo/hero.webm"
     });
 
     await Navbar.deleteMany({});
