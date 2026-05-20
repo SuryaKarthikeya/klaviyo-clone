@@ -95,39 +95,40 @@ const Hero = ({ data, logoStrip }) => {
           </motion.p>
         </motion.div>
 
-        {/* ── Logos Section ── */}
-        {logoStrip && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="mt-20 pt-10 border-t border-white/20"
-          >
-            <p className="text-sm font-bold text-white/60 uppercase mb-8 tracking-wider">
-              {logoStrip.label}
-            </p>
-            <div className="flex flex-wrap items-center gap-10 md:gap-16">
-              {logoStrip.logos?.map((logo, index) => {
-                const localImages = ["/assets/klaviyo/logo_1.png", "/assets/klaviyo/logo_2.png", "/assets/klaviyo/logo_3.png"];
-                const fallbackImg = localImages[index % localImages.length];
-
-                return (
-                  <a key={logo._id || index} href={logo.url} target="_blank" rel="noreferrer">
-                    <img
-                      src={logo.imageUrl}
-                      alt={logo.name}
-                      className="h-7 md:h-9 w-auto object-contain opacity-60 brightness-0 invert hover:opacity-100 transition-all duration-500"
-                      onError={(e) => { e.target.src = fallbackImg; }}
-                    />
-                  </a>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
-
       </div>
     </div>
+
+    {/* ── Logo Strip — separate section BELOW the video ── */}
+    {logoStrip && (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.6 }}
+        className="bg-realify-bg border-b border-gray-200 py-8 px-6"
+      >
+        <div className="max-w-[1400px] mx-auto">
+          <p className="text-xs font-bold text-gray-500 uppercase mb-6 tracking-widest">
+            {logoStrip.label}
+          </p>
+          <div className="flex flex-wrap items-center gap-10 md:gap-16">
+            {logoStrip.logos?.map((logo, index) => {
+              const localImages = ["/assets/klaviyo/logo_1.png", "/assets/klaviyo/logo_2.png", "/assets/klaviyo/logo_3.png"];
+              const fallbackImg = localImages[index % localImages.length];
+              return (
+                <a key={logo._id || index} href={logo.url} target="_blank" rel="noreferrer">
+                  <img
+                    src={logo.imageUrl}
+                    alt={logo.name}
+                    className="h-6 md:h-8 w-auto object-contain opacity-50 grayscale hover:opacity-80 hover:grayscale-0 transition-all duration-500"
+                    onError={(e) => { e.target.src = fallbackImg; }}
+                  />
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </motion.div>
+    )}
   );
 };
 
