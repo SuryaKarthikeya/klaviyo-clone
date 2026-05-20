@@ -16,7 +16,7 @@ const seedDataFn = async () => {
         subHeadline: "Unify email, SMS, and AI to drive growth and retention.",
         primaryCTA: { label: "Get started free", url: "/signup" },
         secondaryCTA: { label: "Watch Demo", url: "/demo" },
-        backgroundImage: "/images/hero-bg.jpg",
+        backgroundImage: "",
         videoUrl: "/assets/klaviyo/hero.webm"
     });
 
@@ -36,8 +36,11 @@ const seedDataFn = async () => {
     await LogoStrip.create({
         label: 'Trusted by 167,000+ brands',
         logos: [
-            { name: 'Shopify', imageUrl: '/logos/shopify.svg', url: 'https://shopify.com' },
-            { name: 'WooCommerce', imageUrl: '/logos/woo.svg', url: 'https://woocommerce.com' },
+            { name: 'Shopify', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg', url: 'https://shopify.com' },
+            { name: 'Amazon', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', url: 'https://amazon.com' },
+            { name: 'Google', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', url: 'https://google.com' },
+            { name: 'Stripe', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg', url: 'https://stripe.com' },
+            { name: 'Slack', imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png', url: 'https://slack.com' },
         ]
     });
 
@@ -58,18 +61,34 @@ const seedDataFn = async () => {
             {
                 icon: 'email',
                 title: 'Email Marketing',
-                description: 'Build and send beautiful emails that convert.',
+                description: 'Build and send beautiful emails that convert. Personalise at scale with AI-powered segmentation.',
                 ctaLabel: 'Learn more',
                 ctaUrl: '/email',
-                imageUrl: '/images/feature-email.jpg'
+                imageUrl: '/assets/klaviyo/marketing_agent.webp'
             },
             {
                 icon: 'sms',
                 title: 'SMS Marketing',
-                description: 'Reach customers directly on their phones.',
+                description: 'Reach customers directly on their phones with targeted, timely text messages.',
                 ctaLabel: 'Learn more',
                 ctaUrl: '/sms',
-                imageUrl: '/images/feature-sms.jpg'
+                imageUrl: '/assets/agent_ui.png'
+            },
+            {
+                icon: 'analytics',
+                title: 'Analytics & Insights',
+                description: 'Understand your customers better with deep analytics and real-time reporting.',
+                ctaLabel: 'Learn more',
+                ctaUrl: '/analytics',
+                imageUrl: '/assets/hero_ui.png'
+            },
+            {
+                icon: 'integrations',
+                title: 'Integrations',
+                description: 'Connect your entire stack with 350+ integrations including Shopify, WooCommerce, and more.',
+                ctaLabel: 'View integrations',
+                ctaUrl: '/integrations',
+                imageUrl: '/assets/klaviyo/marketing_agent.webp'
             },
         ]
     });
@@ -79,15 +98,39 @@ const seedDataFn = async () => {
         sectionTitle: 'Loved by thousands of brands',
         testimonials: [
             {
-                quote: 'Realify.AI has completely transformed how we reach our customers.',
-                authorName: 'Jane Doe',
-                authorRole: 'CEO',
-                company: 'BrandX',
-                companyLogo: '/logos/brandx.svg',
-                avatarUrl: '/avatars/jane.jpg',
+                quote: 'Realify.AI has completely transformed how we reach our customers. Our revenue doubled in just 6 months.',
+                authorName: 'Sarah Johnson',
+                authorRole: 'Head of Marketing',
+                company: 'Huel',
+                companyLogo: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/Huel_logo.png',
+                avatarUrl: '/assets/klaviyo/case_study_1.jpg',
                 metrics: [
                     { value: '2x', label: 'revenue growth' },
                     { value: '40%', label: 'open rate' },
+                ]
+            },
+            {
+                quote: 'The AI-driven segmentation is unlike anything we have used before. It just works.',
+                authorName: 'Mark Rivera',
+                authorRole: 'CEO',
+                company: 'Graza',
+                companyLogo: '',
+                avatarUrl: '/assets/klaviyo/case_study_2.jpg',
+                metrics: [
+                    { value: '3.5x', label: 'ROI' },
+                    { value: '60%', label: 'click rate' },
+                ]
+            },
+            {
+                quote: 'Switching to Realify.AI was the best decision we made this year for our DTC growth.',
+                authorName: 'Aisha Patel',
+                authorRole: 'CMO',
+                company: 'Feastables',
+                companyLogo: '',
+                avatarUrl: '/assets/klaviyo/case_study_3.jpg',
+                metrics: [
+                    { value: '150%', label: 'email revenue' },
+                    { value: '25%', label: 'churn reduction' },
                 ]
             }
         ]
@@ -99,9 +142,12 @@ const seedDataFn = async () => {
         subtitle: 'Over 350 integrations available',
         totalCount: '350+',
         integrations: [
-            { name: 'Shopify', logoUrl: '/logos/shopify.svg', category: 'ecommerce', url: 'https://shopify.com' },
-            { name: 'WooCommerce', logoUrl: '/logos/woo.svg', category: 'ecommerce', url: 'https://woocommerce.com' },
-            { name: 'Smile.io', logoUrl: '/logos/smile.svg', category: 'loyalty', url: 'https://smile.io' },
+            { name: 'Shopify', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Shopify_logo_2018.svg', category: 'ecommerce', url: 'https://shopify.com' },
+            { name: 'Amazon', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg', category: 'ecommerce', url: 'https://amazon.com' },
+            { name: 'Stripe', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg', category: 'payments', url: 'https://stripe.com' },
+            { name: 'Google', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg', category: 'ads', url: 'https://google.com' },
+            { name: 'Meta', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg', category: 'ads', url: 'https://meta.com' },
+            { name: 'Slack', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/7/76/Slack_Icon.png', category: 'communication', url: 'https://slack.com' },
         ]
     });
 
@@ -141,6 +187,7 @@ const seedDataFn = async () => {
                 links: [
                     { label: 'Email', url: '/email' },
                     { label: 'SMS', url: '/sms' },
+                    { label: 'Analytics', url: '/analytics' },
                 ]
             },
             {
@@ -148,16 +195,27 @@ const seedDataFn = async () => {
                 links: [
                     { label: 'About', url: '/about' },
                     { label: 'Careers', url: '/careers' },
+                    { label: 'Blog', url: '/blog' },
+                ]
+            },
+            {
+                heading: 'Resources',
+                links: [
+                    { label: 'Documentation', url: '/docs' },
+                    { label: 'Integrations', url: '/integrations' },
+                    { label: 'Case Studies', url: '/case-studies' },
                 ]
             }
         ],
         socialLinks: [
-            { platform: 'Twitter', url: 'https://twitter.com/realify', icon: 'twitter' },
-            { platform: 'LinkedIn', url: 'https://linkedin.com/company/realify', icon: 'linkedin' },
+            { platform: 'Twitter', url: 'https://twitter.com/realify', icon: 'tw' },
+            { platform: 'LinkedIn', url: 'https://linkedin.com/company/realify', icon: 'in' },
+            { platform: 'GitHub', url: 'https://github.com/realify', icon: 'gh' },
         ],
         legalLinks: [
             { label: 'Privacy Policy', url: '/privacy' },
             { label: 'Terms of Service', url: '/terms' },
+            { label: 'Cookie Policy', url: '/cookies' },
         ],
         copyright: '© 2024 Realify.AI, Inc.'
     });
