@@ -23,7 +23,7 @@ const renderIcon = (iconName) => {
     .join('');
 
   const IconComponent = LucideIcons[camelCased] || LucideIcons[lookupName] || LucideIcons.Sparkles;
-  
+
   return <IconComponent className="w-6 h-6 text-realify-dark" />;
 };
 
@@ -33,9 +33,9 @@ const FeatureCards = ({ data }) => {
   return (
     <div className="py-32 bg-realify-bg">
       <div className="max-w-[1400px] mx-auto px-6">
-        
+
         <div className="text-center mb-20">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -44,7 +44,7 @@ const FeatureCards = ({ data }) => {
           >
             {data.sectionTitle || 'Autonomous agents that do the work'}
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
@@ -56,21 +56,30 @@ const FeatureCards = ({ data }) => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-          
+
           {data.features.map((feature, index) => {
             // Provide fallback image to maintain our visual fidelity if API is generic
             const premiumFallback = index % 2 === 0 ? "/assets/klaviyo/marketing_agent.webp" : "/assets/agent_ui.png";
-            
+
             return (
-              <motion.div 
+              <motion.div
                 key={feature._id || index}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: index * 0.15, ease: "easeOut" }}
-                className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col group cursor-pointer"
+                className="relative bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100 flex flex-col group cursor-pointer min-h-[420px]"
               >
-                <div className="p-10 lg:p-14 flex-1">
+                {/* ✅ Background Image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat z-0"
+                  style={{ backgroundImage: `url(${feature.imageUrl})` }}
+                />
+                {/* ✅ Dark overlay so text is readable */}
+                <div className="absolute inset-0 bg-white/80 z-10" />
+
+                {/* ✅ Content on top */}
+                <div className="relative z-20 p-10 lg:p-14 flex-1">
                   <div className="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-8 border border-gray-100 shadow-sm">
                     {renderIcon(feature.icon)}
                   </div>
@@ -81,16 +90,6 @@ const FeatureCards = ({ data }) => {
                   <a href={feature.ctaUrl || "#"} className="inline-flex items-center text-lg font-bold text-realify-blue group-hover:text-blue-800 transition-colors">
                     {feature.ctaLabel} <span className="ml-2 group-hover:translate-x-1 transition-transform">&rarr;</span>
                   </a>
-                </div>
-                
-                <div className="bg-[#f0f4ff] relative overflow-hidden h-64 lg:h-80 flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent z-10 pointer-events-none"></div>
-                  <img 
-                    src={feature.imageUrl} 
-                    alt={feature.title}
-                    className="w-[85%] h-auto object-contain transform group-hover:scale-105 transition-transform duration-700 ease-out z-0 drop-shadow-xl"
-                    onError={(e) => { e.target.src = premiumFallback; }}
-                  />
                 </div>
               </motion.div>
             );

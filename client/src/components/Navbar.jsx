@@ -53,38 +53,37 @@ const Navbar = ({ data }) => {
           <span className="inline-flex items-center text-black font-bold group-hover:underline">Explore <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" /></span>
         </div>
         <div className="w-48 h-32 bg-white rounded shadow-sm border border-gray-200 flex items-center justify-center">
-           <span className="text-gray-400 font-medium">Image</span>
+          <span className="text-gray-400 font-medium">Image</span>
         </div>
       </div>
     </div>
   );
 
   return (
-    <nav 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled || activeMenu || isMobileOpen ? 'bg-realify-bg shadow-md py-4' : 'bg-realify-bg/80 backdrop-blur-md py-6'
-      }`}
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled || activeMenu || isMobileOpen ? 'bg-black shadow-md py-4' : 'bg-black/80 backdrop-blur-md py-6'
+        }`}
       onMouseLeave={handleMouseLeave}
     >
       <div className="max-w-[1400px] mx-auto px-6">
         <div className="flex justify-between items-center">
-          
+
           {/* Logo & Links */}
           <div className="flex items-center gap-10">
             <a href="/" className="text-4xl font-bold tracking-tighter text-black lowercase flex items-center">
               {data.logo ? (
-                 <img src={data.logo} alt="Realify.AI Logo" className="h-8" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
+                <img src={data.logo} alt="Realify.AI Logo" className="h-8" onError={(e) => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'block'; }} />
               ) : null}
               <span style={{ display: data.logo ? 'none' : 'block' }}>realify.ai</span>
             </a>
             <div className="hidden lg:flex items-center gap-8">
               {navLinks.map((link) => (
-                <div 
-                  key={link.label} 
+                <div
+                  key={link.label}
                   className="relative group h-full py-2"
                   onMouseEnter={() => link.hasDropdown && handleMouseEnter(link.label)}
                 >
-                  <a href={link.url || "#"} className="flex items-center text-sm font-semibold text-gray-800 group-hover:text-black transition-colors relative">
+                  <a href={link.url || "#"} className="flex items-center text-sm font-semibold text-white group-hover:text-gray-300 transition-colors relative">
                     {link.label}
                     {link.hasDropdown && (
                       <ChevronDown className={`ml-1.5 w-4 h-4 text-gray-400 transition-transform duration-200 ${activeMenu === link.label ? 'rotate-180' : ''}`} />
@@ -102,15 +101,15 @@ const Navbar = ({ data }) => {
             <button className="text-gray-600 hover:text-black transition-colors">
               <Search className="w-5 h-5" />
             </button>
-            <button className="text-gray-600 hover:text-black transition-colors flex items-center text-sm font-semibold">
+            <button className="text-white hover:text-gray-300 transition-colors flex items-center text-sm font-semibold">
               <Globe className="w-4 h-4 mr-1.5" />
               EN
             </button>
-            <a href={data.ctaSecondary?.url || "/login"} className="text-sm font-semibold text-gray-800 hover:text-black transition-colors relative group">
+            <a href={data.ctaSecondary?.url || "/login"} className="text-sm font-semibold text-white hover:text-gray-300 transition-colors relative group">
               {data.ctaSecondary?.label || "Log in"}
               <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
             </a>
-            <a href="/demo" className="text-sm font-bold text-black border-2 border-black px-5 py-2.5 rounded hover:bg-black hover:text-white transition-all duration-300">
+            <a href="/demo" className="text-sm font-bold text-white border-2 border-white px-5 py-2.5 rounded hover:bg-white hover:text-black transition-all duration-300">
               Get a demo
             </a>
             <a href={data.ctaPrimary?.url || "/signup"} className="text-sm font-bold text-white bg-realify-blue px-5 py-3 rounded hover:bg-blue-700 transition-colors shadow-sm">
@@ -119,7 +118,7 @@ const Navbar = ({ data }) => {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button className="lg:hidden text-black" onClick={() => setIsMobileOpen(!isMobileOpen)}>
+          <button className="lg:hidden text-white" onClick={() => setIsMobileOpen(!isMobileOpen)}>
             {isMobileOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
           </button>
         </div>
@@ -143,7 +142,7 @@ const Navbar = ({ data }) => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
