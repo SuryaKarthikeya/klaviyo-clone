@@ -22,6 +22,7 @@ const Hero = ({ data, logoStrip }) => {
   };
 
   return (
+    <>
     <div className="relative overflow-hidden" style={{ minHeight: '100vh' }}>
 
       {/* ── Full-screen background video ── */}
@@ -129,6 +130,7 @@ const Hero = ({ data, logoStrip }) => {
         </div>
       </motion.div>
     )}
+    </>
   );
 };
 
